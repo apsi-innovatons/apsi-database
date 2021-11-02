@@ -1,6 +1,8 @@
 ﻿using System;
+using System.IO;
 using Apsi.Database.Entities;
 using GenFu;
+using Microsoft.Extensions.Configuration;
 
 namespace Apsi.Database
 {
@@ -8,7 +10,8 @@ namespace Apsi.Database
     {
         static void Main(string[] args)
         {
-            DatabaseSeeder.Seed();
+            var context = new AppDbContext();
+            DatabaseSeeder.Seed(context);
             Console.WriteLine("Database has been seeded!");
         }
     }

@@ -10,10 +10,8 @@ namespace Apsi.Database
 {
     public static class DatabaseSeeder
     {
-        public static void Seed()
+        public static void Seed(AppDbContext context)
         {
-            var context = new AppDbContext();
-
             context.Users.Add(new User()
             {
                 FirstName = "Adam",

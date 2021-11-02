@@ -1,5 +1,7 @@
-﻿using Apsi.Database.Entities;
+﻿using System.IO;
+using Apsi.Database.Entities;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 
 namespace Apsi.Database
 {
@@ -17,9 +19,14 @@ namespace Apsi.Database
         public DbSet<Subject> Subjects { get; set; }
         public DbSet<User> Users { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
-            optionsBuilder.UseSqlServer(@"Server=tcp:apsi.database.windows.net,1433;Initial Catalog=apsi-database;Persist Security Info=False;User ID=apsidbadmin;Password=k4p4sFUrZkwNpx8;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
+            // connect to sql server with connection string from app settings
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsetings.json", optional: false, reloadOnChange: true);
+            var configuration = builder.Build();
+            options.UseSqlServer(configuration.GetConnectionString("Default"));
         }
     }
 }
