@@ -7,6 +7,15 @@ namespace Apsi.Database
 {
     public class AppDbContext : DbContext
     {
+        public AppDbContext()
+        {
+        }
+
+        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
+        {
+
+        }
+
         public DbSet<Attachment> Attachments { get; set; }
         public DbSet<Benefit> Benefits { get; set; }
         public DbSet<Cost> Costs { get; set; }
