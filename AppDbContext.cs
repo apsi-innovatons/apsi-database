@@ -7,8 +7,11 @@ namespace Apsi.Database
 {
     public class AppDbContext : DbContext
     {
+        private bool defaultConfig;
+
         public AppDbContext()
         {
+            defaultConfig = true;
         }
 
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
@@ -30,12 +33,19 @@ namespace Apsi.Database
 
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
-            // connect to sql server with connection string from app settings
-            var builder = new ConfigurationBuilder()
-                .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("appsetings.json", optional: false, reloadOnChange: true);
-            var configuration = builder.Build();
-            options.UseSqlServer(configuration.GetConnectionString("Default"));
+            if (defaultConfig)
+            {
+                // connect to sql server with connection string from app settings
+                var builder = new ConfigurationBuilder()
+                    .SetBasePath(Directory.GetCurrentDirectory())
+                    .AddJsonFile("appsetings.json", optional: false, reloadOnChange: true);
+                var configuration = builder.Build();
+                options.UseSqlServer(configuration.GetConnectionString("Default"));
+            }
+            else
+            {
+                base.OnConfiguring(options);
+            }
         }
     }
 }
