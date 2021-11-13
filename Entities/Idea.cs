@@ -14,6 +14,7 @@ namespace Apsi.Database.Entities
         public DateTime Date { get; set; }
         public bool Blocked { get; set; }
         public bool Anonymous { get; set; }
+        public string Keywords { get; set; }
 
         public Subject Subject { get; set; }
         public List<RatingSetting> RatingSettings { get; set; }
