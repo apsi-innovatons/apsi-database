@@ -31,8 +31,6 @@ namespace Apsi.Database
         public DbSet<Subject> Subjects { get; set; }
         public DbSet<User> Users { get; set; }
 
-        public DbSet<Rating> Ratings { get; set; }
-
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
             if (defaultConfig)

@@ -113,9 +113,6 @@ namespace Apsi.Database.Migrations
                     b.Property<string>("Keywords")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<double>("Rating")
-                        .HasColumnType("float");
-
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
@@ -194,34 +191,6 @@ namespace Apsi.Database.Migrations
                     b.HasIndex("PostId");
 
                     b.ToTable("PostAnswers");
-                });
-
-            modelBuilder.Entity("Apsi.Database.Entities.Rating", b =>
-                {
-                    b.Property<int?>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int?>("AuthorId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("IdeaId")
-                        .HasColumnType("int");
-
-                    b.Property<double>("Value")
-                        .HasColumnType("float");
-
-                    b.Property<double>("Weight")
-                        .HasColumnType("float");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("AuthorId");
-
-                    b.HasIndex("IdeaId");
-
-                    b.ToTable("Ratings");
                 });
 
             modelBuilder.Entity("Apsi.Database.Entities.RatingSetting", b =>
@@ -417,19 +386,6 @@ namespace Apsi.Database.Migrations
                     b.Navigation("Author");
                 });
 
-            modelBuilder.Entity("Apsi.Database.Entities.Rating", b =>
-                {
-                    b.HasOne("Apsi.Database.Entities.User", "Author")
-                        .WithMany()
-                        .HasForeignKey("AuthorId");
-
-                    b.HasOne("Apsi.Database.Entities.Idea", null)
-                        .WithMany("Ratings")
-                        .HasForeignKey("IdeaId");
-
-                    b.Navigation("Author");
-                });
-
             modelBuilder.Entity("Apsi.Database.Entities.RatingSetting", b =>
                 {
                     b.HasOne("Apsi.Database.Entities.Idea", null)
@@ -474,8 +430,6 @@ namespace Apsi.Database.Migrations
                     b.Navigation("Benefits");
 
                     b.Navigation("Costs");
-
-                    b.Navigation("Ratings");
 
                     b.Navigation("RatingSettings");
                 });
