@@ -16,11 +16,15 @@ namespace Apsi.Database.Entities
         public bool Anonymous { get; set; }
         public string Keywords { get; set; }
 
+        public double Rating { get; set; }
+
         public Subject Subject { get; set; }
         public List<RatingSetting> RatingSettings { get; set; }
         public List<Attachment> Attachments { get; set; }
         public List<Benefit> Benefits { get; set; }
         public List<Cost> Costs { get; set; }
+
+        public List<Rating> Ratings { get; set; }
         public User Author { get; set; }
     }
 }
