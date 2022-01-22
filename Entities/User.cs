@@ -13,5 +13,7 @@ namespace Apsi.Database.Entities
         public UserRole UserRole { get; set; }
         public string Password { get; set; }
         public List<SocialGroup> SocialGroups { get; set; }
+
+        public List<Subject> Subjects { get; set; }
     }
 }
