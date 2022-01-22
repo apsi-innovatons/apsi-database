@@ -15,12 +15,13 @@ namespace Apsi.Database.Entities
         public bool Blocked { get; set; }
         public bool Anonymous { get; set; }
         public string Keywords { get; set; }
-
         public Subject Subject { get; set; }
         public List<RatingSetting> RatingSettings { get; set; }
         public List<Attachment> Attachments { get; set; }
         public List<Benefit> Benefits { get; set; }
         public List<Cost> Costs { get; set; }
+        public List<Vote> Votes { get; set; }
+        public int VotesSum { get; set; }
         public User Author { get; set; }
     }
 }
