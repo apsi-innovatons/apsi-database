@@ -22,6 +22,7 @@ namespace Apsi.Database.Entities
         public List<Cost> Costs { get; set; }
         public List<Vote> Votes { get; set; }
         public int VotesSum { get; set; }
+        public int RejectsSum { get; set; }
         public User Author { get; set; }
     }
 }
